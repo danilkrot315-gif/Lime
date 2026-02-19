@@ -694,4 +694,644 @@ export default function App() {
                   <div className="bg-gradient-to-br from-gray-900/80 to-black border border-gray-800/50 rounded-2xl p-7 shadow-xl">
                     <h2 className="text-2xl font-bold mb-6 flex items-center text-cyan-400"><span className="mr-3 text-2xl">🏢</span>Основная информация</h2>
                     <div className="space-y-5">
-                      {[{ label: 'Полное название', value: selectedPlant === 'ВЛГ' ? 'ВОЛМА ВЛГ' : 'Волгоград ВТР' }, { label: 'Адрес', value
+                      {[{ label: 'Полное название', value: selectedPlant === 'ВЛГ' ? 'ВОЛМА ВЛГ' : 'Волгоград ВТР' }, { label: 'Адрес', value: selectedPlant === 'ВЛГ' ? 'г. Волгоград, ул. Заводская, 15' : 'г. Волгоград, пр. Ленина, 78' }, { label: 'Директор', value: selectedPlant === 'ВЛГ' ? 'Смирнов Алексей Владимирович' : 'Козлов Дмитрий Сергеевич' }, { label: 'Год основания', value: selectedPlant === 'ВЛГ' ? '1954' : '1967' }, { label: 'Количество сотрудников', value: selectedPlant === 'ВЛГ' ? '1,248' : '986' }].map((item, i) => (
+                        <div key={i} className="border-b border-gray-800/50 pb-4">
+                          <p className="text-gray-400 text-sm mb-1">{item.label}</p>
+                          <p className="text-xl font-semibold">{item.value}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="bg-gradient-to-br from-gray-900/80 to-black border border-gray-800/50 rounded-2xl p-7 shadow-xl">
+                    <h2 className="text-2xl font-bold mb-6 flex items-center text-emerald-400"><span className="mr-3 text-2xl">💰</span>Финансовые показатели</h2>
+                    <div className="space-y-5">
+                      {[{ label: 'Годовой оборот', value: selectedPlant === 'ВЛГ' ? '42.5M ₽' : '38.2M ₽', color: 'emerald' }, { label: 'Рентабельность', value: '28.4%', color: 'cyan' }, { label: 'Инвестиции в модернизацию', value: '5.2M ₽', color: 'amber' }, { label: 'Энергопотребление', value: '1.24 МВт', color: 'purple' }].map((item, i) => (
+                        <div key={i} className="border-b border-gray-800/50 pb-4">
+                          <p className="text-gray-400 text-sm mb-1">{item.label}</p>
+                          <p className={`text-3xl font-bold text-${item.color}-400`}>{item.value}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div>
+                <div className="flex justify-between items-center mb-10">
+                  <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-500">Заводы</h1>
+                  <p className="text-gray-400 text-lg flex items-center"><span className="mr-2">🏭</span>Всего: 2 завода</p>
+                </div>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  {['ВЛГ', 'ВТР'].map((plant) => (
+                    <motion.div key={plant} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: plant === 'ВЛГ' ? 0 : 0.1 }} whileHover={{ y: -10 }} className="bg-gradient-to-br from-gray-900/80 to-black border border-gray-800/50 rounded-2xl p-8 shadow-2xl cursor-pointer hover:border-cyan-500/30 transition-all relative overflow-hidden group" onClick={() => handlePlantSelect(plant)}>
+                      <div className="relative z-10">
+                        <div className="flex justify-between items-start mb-5">
+                          <div><span className={`inline-block px-4 py-1.5 rounded-full text-sm font-bold ${plant === 'ВЛГ' ? 'bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-blue-300 border border-blue-500/30' : 'bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300 border border-purple-500/30'}`}>{plant}</span></div>
+                          <button className="text-gray-400 hover:text-cyan-400 transition-colors text-xl">✏️</button>
+                        </div>
+                        <h3 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">{plant === 'ВЛГ' ? 'ВОЛМА ВЛГ' : 'Волгоград ВТР'}</h3>
+                        <p className="text-gray-300 mb-6 text-lg">{plant === 'ВЛГ' ? 'Крупнейшее предприятие по производству литейных изделий в регионе' : 'Специализируется на производстве трубной продукции для нефтегазовой отрасли'}</p>
+                        <div className="grid grid-cols-2 gap-5 mt-6">
+                          {[{ label: 'Сотрудников', value: plant === 'ВЛГ' ? '1,248' : '986' }, { label: 'Годовой оборот', value: plant === 'ВЛГ' ? '42.5M ₽' : '38.2M ₽' }, { label: 'Цехов', value: plant === 'ВЛГ' ? '8' : '6' }, { label: 'Оборудование', value: plant === 'ВЛГ' ? '245' : '187' }].map((item, i) => (
+                            <div key={i}><p className="text-gray-400 text-sm mb-1">{item.label}</p><p className="text-2xl font-bold">{item.value}</p></div>
+                          ))}
+                        </div>
+                        <div className="mt-8 pt-5 border-t border-gray-800/50 flex justify-between items-center">
+                          <div className="flex items-center"><div className="w-3 h-3 bg-emerald-500 rounded-full mr-3"></div><span className="text-sm text-gray-300 font-medium">Работает в штатном режиме</span></div>
+                          <motion.button whileHover={{ x: 5 }} whileTap={{ scale: 0.95 }} className="text-cyan-400 hover:text-cyan-300 transition-colors font-bold flex items-center text-lg">Подробнее<span className="ml-2 text-xl">→</span></motion.button>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Оборудование */}
+        {activeTab === 'Оборудование' && (
+          <div className="p-8">
+            <div className="flex justify-between items-center mb-10">
+              <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-cyan-500">Список оборудования</h1>
+              <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={() => setIsAddEquipmentModalOpen(true)} className="flex items-center bg-gradient-to-r from-emerald-600 to-cyan-700 hover:opacity-90 transition-all px-7 py-4 rounded-2xl font-bold shadow-2xl text-lg"><span className="text-2xl mr-2">➕</span>Добавить оборудование</motion.button>
+            </div>
+            <div className="bg-gradient-to-br from-gray-900/80 to-black border border-gray-800/50 rounded-2xl overflow-hidden shadow-2xl">
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead className="bg-gray-800/60 backdrop-blur-sm">
+                    <tr>
+                      <th className="text-left py-5 px-7 font-bold text-gray-200 border-b border-gray-800/50 text-lg">Название</th>
+                      <th className="text-left py-5 px-7 font-bold text-gray-200 border-b border-gray-800/50 text-lg">Место расположения</th>
+                      <th className="text-left py-5 px-7 font-bold text-gray-200 border-b border-gray-800/50 text-lg">Производитель</th>
+                      <th className="text-left py-5 px-7 font-bold text-gray-200 border-b border-gray-800/50 text-lg">Поставщик</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {equipment.map((item, index) => (
+                      <motion.tr key={item.id} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: index * 0.05 }} whileHover={{ backgroundColor: 'rgba(16, 185, 129, 0.08)' }} className="border-b border-gray-800/30 transition-colors">
+                        <td className="py-5 px-7 font-medium text-lg">{item.name}</td>
+                        <td className="py-5 px-7"><span className={`px-4 py-1.5 rounded-full text-sm font-medium ${item.workplace.includes('Цех') ? 'bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-blue-300 border border-blue-500/30' : item.workplace.includes('Склад') ? 'bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300 border border-purple-500/30' : 'bg-gradient-to-r from-amber-500/20 to-orange-500/20 text-amber-300 border border-amber-500/30'}`}>{item.workplace}</span></td>
+                        <td className="py-5 px-7 text-cyan-400 font-medium text-lg">{item.manufacturer}</td>
+                        <td className="py-5 px-7">{item.supplier}</td>
+                      </motion.tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              {equipment.length === 0 && (
+                <div className="text-center py-24 text-gray-400">
+                  <div className="text-6xl mb-6">⚙️</div>
+                  <h3 className="text-2xl font-bold mb-3">Список оборудования пуст</h3>
+                  <p className="max-w-md mx-auto mb-6">Добавьте первое оборудование, чтобы начать работу с системой управления</p>
+                  <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={() => setIsAddEquipmentModalOpen(true)} className="px-8 py-4 bg-gradient-to-r from-emerald-600 to-cyan-700 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all">Добавить оборудование</motion.button>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Обслуживание */}
+        {activeTab === 'Обслуживание' && (
+          <div className="p-8">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-10">
+              <div>
+                <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-amber-400 to-orange-500">Заявки на обслуживание</h1>
+                <p className="text-gray-400 mt-2">Управление заявками на техническое обслуживание и ремонт оборудования</p>
+              </div>
+              <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={() => setIsAddRequestModalOpen(true)} className="flex items-center bg-gradient-to-r from-amber-600 to-orange-700 hover:opacity-90 transition-all px-7 py-4 rounded-2xl font-bold shadow-2xl text-lg"><span className="text-2xl mr-2">➕</span>Добавить заявку</motion.button>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-4 mb-8">
+              <div className="relative w-full sm:w-48">
+                <select value={factoryFilter} onChange={(e) => setFactoryFilter(e.target.value)} className="w-full bg-gray-900/80 border border-gray-800/50 rounded-xl py-3.5 px-5 pr-10 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-transparent text-lg appearance-none">
+                  <option value="Все заводы">Все заводы</option>
+                  <option value="ВЛГ">ВЛГ</option>
+                  <option value="ВТР">ВТР</option>
+                </select>
+                <div className="absolute right-4 top-3.5 text-gray-400 text-xl">🏭</div>
+              </div>
+              <div className="relative w-full sm:w-48">
+                <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)} className="w-full bg-gray-900/80 border border-gray-800/50 rounded-xl py-3.5 px-5 pr-10 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-transparent text-lg appearance-none">
+                  <option value="Все статусы">Все статусы</option>
+                  <option value="Новый">Новый</option>
+                  <option value="Открыто">Открыто</option>
+                  <option value="Ожидание">Ожидание</option>
+                  <option value="Выполнено">Выполнено</option>
+                </select>
+                <div className="absolute right-4 top-3.5 text-gray-400 text-xl">📊</div>
+              </div>
+              <div className="relative w-full sm:flex-1">
+                <input type="text" placeholder="Поиск по названию, заводу или описанию..." value={maintenanceSearchQuery} onChange={(e) => setMaintenanceSearchQuery(e.target.value)} className="w-full bg-gray-900/80 border border-gray-800/50 rounded-xl py-3.5 px-6 pl-12 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-transparent text-lg" />
+                <div className="absolute left-4 top-3.5 text-gray-400 text-xl">🔍</div>
+              </div>
+            </div>
+            <div className="bg-gradient-to-br from-gray-900/80 to-black border border-gray-800/50 rounded-2xl overflow-hidden shadow-2xl">
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead className="bg-gray-800/60 backdrop-blur-sm">
+                    <tr>
+                      <th className="text-left py-5 px-7 font-bold text-gray-200 border-b border-gray-800/50 text-lg">Название заявки</th>
+                      <th className="text-left py-5 px-7 font-bold text-gray-200 border-b border-gray-800/50 text-lg">Завод</th>
+                      <th className="text-left py-5 px-7 font-bold text-gray-200 border-b border-gray-800/50 text-lg">Статус</th>
+                      <th className="text-left py-5 px-7 font-bold text-gray-200 border-b border-gray-800/50 text-lg">Оборудование</th>
+                      <th className="text-left py-5 px-7 font-bold text-gray-200 border-b border-gray-800/50 text-lg">Дата создания</th>
+                      <th className="text-left py-5 px-7 font-bold text-gray-200 border-b border-gray-800/50 text-lg">Действия</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filteredRequests.map((request, index) => (
+                      <motion.tr key={request.id} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: index * 0.05 }} whileHover={{ backgroundColor: 'rgba(245, 158, 11, 0.08)' }} className="border-b border-gray-800/30 transition-colors cursor-pointer" onClick={() => handleViewRequest(request)}>
+                        <td className="py-5 px-7 font-medium text-lg">{request.title}</td>
+                        <td className="py-5 px-7"><span className={`px-4 py-1.5 rounded-full text-sm font-medium ${request.factory === 'ВЛГ' ? 'bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-blue-300 border border-blue-500/30' : 'bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300 border border-purple-500/30'}`}>{request.factory}</span></td>
+                        <td className="py-5 px-7"><span className={`px-4 py-1.5 rounded-full text-sm font-medium ${request.status === 'Новый' ? 'bg-gradient-to-r from-amber-500/20 to-orange-500/20 text-amber-300 border border-amber-500/30' : request.status === 'Открыто' ? 'bg-gradient-to-r from-emerald-500/20 to-teal-500/20 text-emerald-300 border border-emerald-500/30' : request.status === 'Ожидание' ? 'bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-blue-300 border border-blue-500/30' : 'bg-gradient-to-r from-gray-500/20 to-gray-600/20 text-gray-300 border border-gray-500/30'}`}>{request.status}</span></td>
+                        <td className="py-5 px-7 text-cyan-400">{request.equipment}</td>
+                        <td className="py-5 px-7">{new Date(request.createdAt).toLocaleDateString('ru-RU')}</td>
+                        <td className="py-5 px-7"><button onClick={(e) => { e.stopPropagation(); handleViewRequest(request); }} className="text-amber-400 hover:text-amber-300 transition-colors text-xl" title="Просмотреть">👁️</button></td>
+                      </motion.tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              {filteredRequests.length === 0 && (
+                <div className="text-center py-24 text-gray-400">
+                  <div className="text-6xl mb-6">🔧</div>
+                  <h3 className="text-2xl font-bold mb-3">{maintenanceSearchQuery || factoryFilter !== 'Все заводы' || statusFilter !== 'Все статусы' ? 'Ничего не найдено' : 'Заявки отсутствуют'}</h3>
+                  <p className="max-w-md mx-auto mb-6">{maintenanceSearchQuery || factoryFilter !== 'Все заводы' || statusFilter !== 'Все статусы' ? 'По вашему запросу ничего не найдено. Попробуйте изменить параметры поиска.' : 'Создайте первую заявку, чтобы начать работу с системой обслуживания.'}</p>
+                  {!maintenanceSearchQuery && factoryFilter === 'Все заводы' && statusFilter === 'Все статусы' && (
+                    <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={() => setIsAddRequestModalOpen(true)} className="px-8 py-4 bg-gradient-to-r from-amber-600 to-orange-700 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all">Создать заявку</motion.button>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Сотрудники */}
+        {activeTab === 'Сотрудники' && (
+          <div className="p-8">
+            <div className="flex border-b border-gray-800/50 mb-10">
+              <button onClick={() => setStaffSubTab('personnel')} className={`px-8 py-4 font-bold text-lg border-b-2 transition-all ${staffSubTab === 'personnel' ? 'border-cyan-500 text-cyan-400' : 'border-transparent text-gray-400 hover:text-gray-300'}`}><span className="mr-2">👥</span>Персонал</button>
+              <button onClick={() => setStaffSubTab('devices')} className={`px-8 py-4 font-bold text-lg border-b-2 transition-all ${staffSubTab === 'devices' ? 'border-cyan-500 text-cyan-400' : 'border-transparent text-gray-400 hover:text-gray-300'}`}><span className="mr-2">📱</span>Устройства</button>
+            </div>
+            {staffSubTab === 'personnel' ? (
+              <div>
+                <div className="flex justify-between items-center mb-8">
+                  <h1 className="text-3xl font-bold">Список персонала</h1>
+                  <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={() => setIsAddPersonModalOpen(true)} className="flex items-center bg-gradient-to-r from-cyan-600 to-blue-700 hover:opacity-90 transition-all px-6 py-3 rounded-xl font-bold shadow-lg"><span className="text-xl mr-2">➕</span>Добавить сотрудника</motion.button>
+                </div>
+                <div className="bg-gradient-to-br from-gray-900/80 to-black border border-gray-800/50 rounded-2xl overflow-hidden shadow-xl">
+                  <table className="w-full">
+                    <thead className="bg-gray-800/60 backdrop-blur-sm">
+                      <tr>
+                        <th className="text-left py-4 px-6 font-bold text-gray-200 border-b border-gray-800/50">ФИО</th>
+                        <th className="text-left py-4 px-6 font-bold text-gray-200 border-b border-gray-800/50">Должность</th>
+                        <th className="text-left py-4 px-6 font-bold text-gray-200 border-b border-gray-800/50">Телефон</th>
+                        <th className="text-left py-4 px-6 font-bold text-gray-200 border-b border-gray-800/50">Email</th>
+                        <th className="text-left py-4 px-6 font-bold text-gray-200 border-b border-gray-800/50">Доступ</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {personnel.map((person, index) => (
+                        <motion.tr key={person.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: index * 0.05 }} whileHover={{ backgroundColor: 'rgba(56, 189, 248, 0.08)' }} className="border-b border-gray-800/30 transition-colors">
+                          <td className="py-4 px-6 font-medium">{person.fio}</td>
+                          <td className="py-4 px-6">{person.position}</td>
+                          <td className="py-4 px-6 text-cyan-400">{person.phone}</td>
+                          <td className="py-4 px-6">{person.email}</td>
+                          <td className="py-4 px-6"><div className="flex flex-wrap gap-2">{person.access.map((access, idx) => (<span key={idx} className={`px-3 py-1 rounded-full text-xs font-medium ${access === 'Полный доступ' ? 'bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300 border border-purple-500/30' : access === 'Аналитика' ? 'bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-blue-300 border border-blue-500/30' : 'bg-gradient-to-r from-cyan-500/20 to-teal-500/20 text-cyan-300 border border-cyan-500/30'}`}>{access}</span>))}</div></td>
+                        </motion.tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            ) : (
+              <div>
+                <div className="flex justify-between items-center mb-8">
+                  <h1 className="text-3xl font-bold">Список устройств</h1>
+                  <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={() => setIsAddDeviceModalOpen(true)} className="flex items-center bg-gradient-to-r from-amber-600 to-orange-700 hover:opacity-90 transition-all px-6 py-3 rounded-xl font-bold shadow-lg"><span className="text-xl mr-2">➕</span>Добавить устройство</motion.button>
+                </div>
+                <div className="bg-gradient-to-br from-gray-900/80 to-black border border-gray-800/50 rounded-2xl overflow-hidden shadow-xl">
+                  <table className="w-full">
+                    <thead className="bg-gray-800/60 backdrop-blur-sm">
+                      <tr>
+                        <th className="text-left py-4 px-6 font-bold text-gray-200 border-b border-gray-800/50">Тип</th>
+                        <th className="text-left py-4 px-6 font-bold text-gray-200 border-b border-gray-800/50">Название</th>
+                        <th className="text-left py-4 px-6 font-bold text-gray-200 border-b border-gray-800/50">Принадлежность</th>
+                        <th className="text-left py-4 px-6 font-bold text-gray-200 border-b border-gray-800/50">EMAE</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {devices.map((device, index) => (
+                        <motion.tr key={device.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: index * 0.05 }} whileHover={{ backgroundColor: 'rgba(245, 158, 11, 0.08)' }} className="border-b border-gray-800/30 transition-colors">
+                          <td className="py-4 px-6"><span className={`px-3 py-1 rounded-full text-sm font-medium ${device.type === 'Компьютер' ? 'bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-blue-300 border border-blue-500/30' : device.type === 'Планшет' ? 'bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300 border border-purple-500/30' : device.type === 'Телефон' ? 'bg-gradient-to-r from-amber-500/20 to-orange-500/20 text-amber-300 border border-amber-500/30' : 'bg-gradient-to-r from-emerald-500/20 to-teal-500/20 text-emerald-300 border border-emerald-500/30'}`}>{device.type}</span></td>
+                          <td className="py-4 px-6 font-medium">{device.name}</td>
+                          <td className="py-4 px-6"><span className={`px-3 py-1 rounded-full text-sm font-medium ${device.affiliation === 'ВЛГ' ? 'bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-blue-300 border border-blue-500/30' : device.affiliation === 'ВТР' ? 'bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300 border border-purple-500/30' : device.affiliation === 'ГК' ? 'bg-gradient-to-r from-amber-500/20 to-orange-500/20 text-amber-300 border border-amber-500/30' : 'bg-gradient-to-r from-cyan-500/20 to-teal-500/20 text-cyan-300 border border-cyan-500/30'}`}>{device.affiliation}</span></td>
+                          <td className="py-4 px-6 font-mono text-cyan-400">{device.emae}</td>
+                        </motion.tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Справочники */}
+        {activeTab === 'Справочники' && (
+          <div className="p-8">
+            {currentView === 'general' && (
+              <div>
+                <h1 className="text-4xl font-bold mb-10 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">Справочники</h1>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {[{ name: 'Рабочие места', view: 'workplaces', icon: '🏭', color: 'from-blue-500 to-cyan-600' }, { name: 'Производители', view: 'manufacturers', icon: '🌍', color: 'from-green-500 to-emerald-600' }, { name: 'Поставщики', view: 'suppliers', icon: '📦', color: 'from-rose-500 to-pink-600' }].map((ref) => (
+                    <motion.div key={ref.view} whileHover={{ y: -10 }} whileTap={{ scale: 0.98 }} onClick={() => setCurrentView(ref.view)} className="bg-gradient-to-br from-gray-900/80 to-black border border-gray-800/50 rounded-2xl p-8 shadow-2xl cursor-pointer hover:border-cyan-500/30 transition-all relative overflow-hidden group">
+                      <div className="relative z-10">
+                        <div className={`w-16 h-16 rounded-2xl mb-6 flex items-center justify-center text-3xl shadow-lg bg-gradient-to-br ${ref.color}`}>{ref.icon}</div>
+                        <h3 className="text-2xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">{ref.name}</h3>
+                        <p className="text-gray-400 mb-6">{ref.view === 'workplaces' && 'Управление рабочими местами на предприятиях'}{ref.view === 'manufacturers' && 'Каталог производителей оборудования и комплектующих'}{ref.view === 'suppliers' && 'Список поставщиков оборудования и материалов'}</p>
+                        <div className="flex items-center text-cyan-400 font-medium"><span>Открыть справочник</span><span className="ml-2 text-xl">→</span></div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            )}
+            {currentView === 'workplaces' && (
+              <div>
+                <div className="flex justify-between items-center mb-10">
+                  <button onClick={() => setCurrentView('general')} className="text-cyan-400 hover:text-cyan-300 transition-colors flex items-center text-lg font-medium"><span className="mr-2 text-2xl">←</span>Назад к списку справочников</button>
+                  <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-500">Справочник Рабочих мест</h1>
+                  <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={() => setIsAddWorkplaceModalOpen(true)} className="flex items-center bg-gradient-to-r from-blue-600 to-cyan-700 hover:opacity-90 transition-all px-6 py-3 rounded-xl font-bold shadow-lg text-lg"><span className="text-xl mr-2">➕</span>Добавить рабочее место</motion.button>
+                </div>
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-8">
+                  <div className="relative w-full sm:w-80"><input type="text" placeholder="Поиск по названию..." value={workplaceSearchQuery} onChange={(e) => setWorkplaceSearchQuery(e.target.value)} className="w-full bg-gray-900/80 border border-gray-800/50 rounded-xl py-4 px-6 pl-12 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-transparent text-lg" /><div className="absolute left-4 top-3.5 text-gray-400 text-xl">🔍</div></div>
+                  <div className="relative w-full sm:w-64"><select value={workplaceFactoryFilter} onChange={(e) => setWorkplaceFactoryFilter(e.target.value)} className="w-full bg-gray-900/80 border border-gray-800/50 rounded-xl py-4 px-6 pr-10 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-transparent text-lg appearance-none"><option value="Все заводы">Все заводы</option><option value="ВЛГ">ВЛГ</option><option value="ВТР">ВТР</option></select><div className="absolute right-4 top-3.5 text-gray-400 text-xl">🏭</div></div>
+                </div>
+                <div className="bg-gradient-to-br from-gray-900/80 to-black border border-gray-800/50 rounded-2xl overflow-hidden shadow-2xl">
+                  <table className="w-full">
+                    <thead className="bg-gray-800/60 backdrop-blur-sm">
+                      <tr>
+                        <th className="text-left py-5 px-7 font-bold text-gray-200 border-b border-gray-800/50 text-lg">Название</th>
+                        <th className="text-left py-5 px-7 font-bold text-gray-200 border-b border-gray-800/50 text-lg">Завод</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {filteredWorkplaces.map((item, index) => (
+                        <motion.tr key={item.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: index * 0.05 }} whileHover={{ backgroundColor: 'rgba(59, 130, 246, 0.08)' }} className="border-b border-gray-800/30 transition-colors">
+                          <td className="py-5 px-7 font-medium text-lg">{item.name}</td>
+                          <td className="py-5 px-7"><span className={`px-4 py-1.5 rounded-full text-sm font-medium ${item.factory === 'ВЛГ' ? 'bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-blue-300 border border-blue-500/30' : 'bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300 border border-purple-500/30'}`}>{item.factory}</span></td>
+                        </motion.tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
+            {currentView === 'manufacturers' && (
+              <div>
+                <div className="flex justify-between items-center mb-10">
+                  <button onClick={() => setCurrentView('general')} className="text-cyan-400 hover:text-cyan-300 transition-colors flex items-center text-lg font-medium"><span className="mr-2 text-2xl">←</span>Назад к списку справочников</button>
+                  <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-emerald-500">Справочник Производителей</h1>
+                  <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={() => setIsAddManufacturerModalOpen(true)} className="flex items-center bg-gradient-to-r from-green-600 to-emerald-700 hover:opacity-90 transition-all px-6 py-3 rounded-xl font-bold shadow-lg text-lg"><span className="text-xl mr-2">➕</span>Добавить производителя</motion.button>
+                </div>
+                <div className="mb-8"><div className="relative w-full max-w-2xl"><input type="text" placeholder="Поиск по названию или стране..." value={manufacturerSearchQuery} onChange={(e) => setManufacturerSearchQuery(e.target.value)} className="w-full bg-gray-900/80 border border-gray-800/50 rounded-xl py-4 px-6 pl-12 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-transparent text-lg" /><div className="absolute left-4 top-3.5 text-gray-400 text-xl">🔍</div></div></div>
+                <div className="bg-gradient-to-br from-gray-900/80 to-black border border-gray-800/50 rounded-2xl overflow-hidden shadow-2xl">
+                  <table className="w-full">
+                    <thead className="bg-gray-800/60 backdrop-blur-sm">
+                      <tr>
+                        <th className="text-left py-5 px-7 font-bold text-gray-200 border-b border-gray-800/50 text-lg">Название</th>
+                        <th className="text-left py-5 px-7 font-bold text-gray-200 border-b border-gray-800/50 text-lg">Страна</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {filteredManufacturers.map((item, index) => (
+                        <motion.tr key={item.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: index * 0.05 }} whileHover={{ backgroundColor: 'rgba(34, 197, 94, 0.08)' }} className="border-b border-gray-800/30 transition-colors">
+                          <td className="py-5 px-7 font-medium text-lg">{item.name}</td>
+                          <td className="py-5 px-7"><span className={`px-4 py-1.5 rounded-full text-sm font-medium ${item.country === 'Россия' ? 'bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-blue-300 border border-blue-500/30' : item.country === 'Германия' ? 'bg-gradient-to-r from-amber-500/20 to-orange-500/20 text-amber-300 border border-amber-500/30' : item.country === 'Франция' ? 'bg-gradient-to-r from-emerald-500/20 to-teal-500/20 text-emerald-300 border border-emerald-500/30' : 'bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300 border border-purple-500/30'}`}>{item.country}</span></td>
+                        </motion.tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
+            {currentView === 'suppliers' && (
+              <div>
+                <div className="flex justify-between items-center mb-10">
+                  <button onClick={() => setCurrentView('general')} className="text-cyan-400 hover:text-cyan-300 transition-colors flex items-center text-lg font-medium"><span className="mr-2 text-2xl">←</span>Назад к списку справочников</button>
+                  <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-rose-400 to-pink-500">Справочник Поставщиков</h1>
+                  <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={() => setIsAddSupplierModalOpen(true)} className="flex items-center bg-gradient-to-r from-rose-600 to-pink-700 hover:opacity-90 transition-all px-6 py-3 rounded-xl font-bold shadow-lg text-lg"><span className="text-xl mr-2">➕</span>Добавить поставщика</motion.button>
+                </div>
+                <div className="mb-8"><div className="relative w-full max-w-2xl"><input type="text" placeholder="Поиск по названию..." value={supplierSearchQuery} onChange={(e) => setSupplierSearchQuery(e.target.value)} className="w-full bg-gray-900/80 border border-gray-800/50 rounded-xl py-4 px-6 pl-12 focus:outline-none focus:ring-2 focus:ring-rose-500/50 focus:border-transparent text-lg" /><div className="absolute left-4 top-3.5 text-gray-400 text-xl">🔍</div></div></div>
+                <div className="bg-gradient-to-br from-gray-900/80 to-black border border-gray-800/50 rounded-2xl overflow-hidden shadow-2xl">
+                  <table className="w-full">
+                    <thead className="bg-gray-800/60 backdrop-blur-sm">
+                      <tr>
+                        <th className="text-left py-5 px-7 font-bold text-gray-200 border-b border-gray-800/50 text-lg">Название</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {filteredSuppliers.map((item, index) => (
+                        <motion.tr key={item.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: index * 0.05 }} whileHover={{ backgroundColor: 'rgba(244, 63, 94, 0.08)' }} className="border-b border-gray-800/30 transition-colors">
+                          <td className="py-5 px-7 font-medium text-lg">{item.name}</td>
+                        </motion.tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Остальные вкладки */}
+        {!['Дашборд', 'Карта', 'Заводы', 'Сотрудники', 'Оборудование', 'Обслуживание', 'Справочники'].includes(activeTab) && (
+          <div className="p-16 text-center min-h-screen flex flex-col items-center justify-center">
+            <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.5 }} className="text-8xl mb-8 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">{tabs.find(t => t.name === activeTab)?.icon}</motion.div>
+            <motion.h2 initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.2 }} className="text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">{activeTab}</motion.h2>
+            <motion.p initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.3 }} className="text-gray-400 max-w-2xl mx-auto text-xl mb-10">{activeTab === 'Обслуживание' && 'Система управления техническим обслуживанием'}{activeTab === 'Отчет' && 'Генерация отчетов по различным параметрам'}</motion.p>
+            <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="px-10 py-5 bg-gradient-to-r from-cyan-600 to-blue-700 rounded-2xl font-bold text-xl shadow-2xl hover:shadow-xl transition-all"><span className="mr-3">⚙️</span>Настроить раздел</motion.button>
+          </div>
+        )}
+      </div>
+
+      {/* Модальные окна */}
+      <AnimatePresence>
+        {/* Все модальные окна для добавления/редактирования элементов */}
+        {isAddWorkplaceModalOpen && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 backdrop-blur-sm" onClick={() => setIsAddWorkplaceModalOpen(false)}>
+            <motion.div initial={{ scale: 0.9, opacity: 0, y: 20 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.9, opacity: 0, y: 20 }} className="bg-gradient-to-br from-gray-900 to-black border border-gray-800/50 rounded-2xl w-full max-w-md shadow-2xl" onClick={e => e.stopPropagation()}>
+              <div className="p-7 border-b border-gray-800/50 flex justify-between items-center">
+                <h2 className="text-2xl font-bold flex items-center bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-500"><span className="mr-3 text-2xl">🏭</span>Новое рабочее место</h2>
+                <button onClick={() => setIsAddWorkplaceModalOpen(false)} className="text-gray-400 hover:text-white transition-colors text-3xl">×</button>
+              </div>
+              <div className="p-7 space-y-6">
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2 flex items-center"><span className="mr-2">🏷️</span>Название <span className="text-rose-400 ml-1">*</span></label>
+                  <input type="text" value={workplaceForm.name} onChange={(e) => { setWorkplaceForm({...workplaceForm, name: e.target.value}); if (workplaceFormErrors.name) setWorkplaceFormErrors({...workplaceFormErrors, name: ''}); }} className={`w-full bg-gray-800/50 border ${workplaceFormErrors.name ? 'border-rose-500' : 'border-gray-700/50'} rounded-xl px-5 py-3.5 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-transparent text-lg`} placeholder="Цех 1" />
+                  {workplaceFormErrors.name && <p className="mt-2 text-sm text-rose-400 flex items-center"><span className="mr-1">⚠️</span>{workplaceFormErrors.name}</p>}
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2 flex items-center"><span className="mr-2">🏭</span>Завод <span className="text-rose-400 ml-1">*</span></label>
+                  <select value={workplaceForm.factory} onChange={(e) => { setWorkplaceForm({...workplaceForm, factory: e.target.value}); if (workplaceFormErrors.factory) setWorkplaceFormErrors({...workplaceFormErrors, factory: ''}); }} className={`w-full bg-gray-800/50 border ${workplaceFormErrors.factory ? 'border-rose-500' : 'border-gray-700/50'} rounded-xl px-5 py-3.5 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-transparent text-lg appearance-none`}>
+                    <option value="ВЛГ">ВЛГ</option>
+                    <option value="ВТР">ВТР</option>
+                  </select>
+                  {workplaceFormErrors.factory && <p className="mt-2 text-sm text-rose-400 flex items-center"><span className="mr-1">⚠️</span>{workplaceFormErrors.factory}</p>}
+                </div>
+              </div>
+              <div className="p-7 border-t border-gray-800/50 flex justify-end space-x-4">
+                <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={() => { setIsAddWorkplaceModalOpen(false); setWorkplaceForm({ name: '', factory: 'ВЛГ' }); setWorkplaceFormErrors({}); }} className="px-6 py-3.5 border border-gray-700/50 rounded-xl hover:bg-gray-800/80 transition-colors text-lg font-medium">Отмена</motion.button>
+                <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={handleAddWorkplace} className="px-6 py-3.5 bg-gradient-to-r from-blue-600 to-cyan-700 rounded-xl hover:opacity-90 transition-all text-lg font-bold shadow-lg">Добавить рабочее место</motion.button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+        
+        {/* Аналогичные модальные окна для производителей, поставщиков, оборудования и заявок */}
+        {isAddManufacturerModalOpen && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 backdrop-blur-sm" onClick={() => setIsAddManufacturerModalOpen(false)}>
+            <motion.div initial={{ scale: 0.9, opacity: 0, y: 20 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.9, opacity: 0, y: 20 }} className="bg-gradient-to-br from-gray-900 to-black border border-gray-800/50 rounded-2xl w-full max-w-md shadow-2xl" onClick={e => e.stopPropagation()}>
+              <div className="p-7 border-b border-gray-800/50 flex justify-between items-center">
+                <h2 className="text-2xl font-bold flex items-center bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-emerald-500"><span className="mr-3 text-2xl">🌍</span>Новый производитель</h2>
+                <button onClick={() => setIsAddManufacturerModalOpen(false)} className="text-gray-400 hover:text-white transition-colors text-3xl">×</button>
+              </div>
+              <div className="p-7 space-y-6">
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2 flex items-center"><span className="mr-2">🏷️</span>Название <span className="text-rose-400 ml-1">*</span></label>
+                  <input type="text" value={manufacturerForm.name} onChange={(e) => { setManufacturerForm({...manufacturerForm, name: e.target.value}); if (manufacturerFormErrors.name) setManufacturerFormErrors({...manufacturerFormErrors, name: ''}); }} className={`w-full bg-gray-800/50 border ${manufacturerFormErrors.name ? 'border-rose-500' : 'border-gray-700/50'} rounded-xl px-5 py-3.5 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-transparent text-lg`} placeholder="Siemens" />
+                  {manufacturerFormErrors.name && <p className="mt-2 text-sm text-rose-400 flex items-center"><span className="mr-1">⚠️</span>{manufacturerFormErrors.name}</p>}
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2 flex items-center"><span className="mr-2">📍</span>Страна <span className="text-rose-400 ml-1">*</span></label>
+                  <select value={manufacturerForm.country} onChange={(e) => { setManufacturerForm({...manufacturerForm, country: e.target.value}); if (manufacturerFormErrors.country) setManufacturerFormErrors({...manufacturerFormErrors, country: ''}); }} className={`w-full bg-gray-800/50 border ${manufacturerFormErrors.country ? 'border-rose-500' : 'border-gray-700/50'} rounded-xl px-5 py-3.5 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-transparent text-lg appearance-none`}>
+                    <option value="Россия">Россия</option>
+                    <option value="Германия">Германия</option>
+                    <option value="Франция">Франция</option>
+                  </select>
+                  {manufacturerFormErrors.country && <p className="mt-2 text-sm text-rose-400 flex items-center"><span className="mr-1">⚠️</span>{manufacturerFormErrors.country}</p>}
+                </div>
+              </div>
+              <div className="p-7 border-t border-gray-800/50 flex justify-end space-x-4">
+                <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={() => { setIsAddManufacturerModalOpen(false); setManufacturerForm({ name: '', country: 'Россия' }); setManufacturerFormErrors({}); }} className="px-6 py-3.5 border border-gray-700/50 rounded-xl hover:bg-gray-800/80 transition-colors text-lg font-medium">Отмена</motion.button>
+                <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={handleAddManufacturer} className="px-6 py-3.5 bg-gradient-to-r from-green-600 to-emerald-700 rounded-xl hover:opacity-90 transition-all text-lg font-bold shadow-lg">Добавить производителя</motion.button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+
+        {isAddSupplierModalOpen && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 backdrop-blur-sm" onClick={() => setIsAddSupplierModalOpen(false)}>
+            <motion.div initial={{ scale: 0.9, opacity: 0, y: 20 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.9, opacity: 0, y: 20 }} className="bg-gradient-to-br from-gray-900 to-black border border-gray-800/50 rounded-2xl w-full max-w-md shadow-2xl" onClick={e => e.stopPropagation()}>
+              <div className="p-7 border-b border-gray-800/50 flex justify-between items-center">
+                <h2 className="text-2xl font-bold flex items-center bg-clip-text text-transparent bg-gradient-to-r from-rose-400 to-pink-500"><span className="mr-3 text-2xl">📦</span>Новый поставщик</h2>
+                <button onClick={() => setIsAddSupplierModalOpen(false)} className="text-gray-400 hover:text-white transition-colors text-3xl">×</button>
+              </div>
+              <div className="p-7 space-y-6">
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2 flex items-center"><span className="mr-2">🏷️</span>Название <span className="text-rose-400 ml-1">*</span></label>
+                  <input type="text" value={supplierForm.name} onChange={(e) => { setSupplierForm({ name: e.target.value }); if (supplierFormErrors.name) setSupplierFormErrors({...supplierFormErrors, name: ''}); }} className={`w-full bg-gray-800/50 border ${supplierFormErrors.name ? 'border-rose-500' : 'border-gray-700/50'} rounded-xl px-5 py-3.5 focus:outline-none focus:ring-2 focus:ring-rose-500/50 focus:border-transparent text-lg`} placeholder="Asus" />
+                  {supplierFormErrors.name && <p className="mt-2 text-sm text-rose-400 flex items-center"><span className="mr-1">⚠️</span>{supplierFormErrors.name}</p>}
+                </div>
+              </div>
+              <div className="p-7 border-t border-gray-800/50 flex justify-end space-x-4">
+                <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={() => { setIsAddSupplierModalOpen(false); setSupplierForm({ name: '' }); setSupplierFormErrors({}); }} className="px-6 py-3.5 border border-gray-700/50 rounded-xl hover:bg-gray-800/80 transition-colors text-lg font-medium">Отмена</motion.button>
+                <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={handleAddSupplier} className="px-6 py-3.5 bg-gradient-to-r from-rose-600 to-pink-700 rounded-xl hover:opacity-90 transition-all text-lg font-bold shadow-lg">Добавить поставщика</motion.button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+
+        {isAddEquipmentModalOpen && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 backdrop-blur-sm" onClick={() => setIsAddEquipmentModalOpen(false)}>
+            <motion.div initial={{ scale: 0.9, opacity: 0, y: 20 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.9, opacity: 0, y: 20 }} className="bg-gradient-to-br from-gray-900 to-black border border-gray-800/50 rounded-2xl w-full max-w-md shadow-2xl max-h-[90vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
+              <div className="p-7 border-b border-gray-800/50 flex justify-between items-center">
+                <h2 className="text-2xl font-bold flex items-center bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-cyan-500"><span className="mr-3 text-2xl">⚙️</span>Новое оборудование</h2>
+                <button onClick={() => setIsAddEquipmentModalOpen(false)} className="text-gray-400 hover:text-white transition-colors text-3xl">×</button>
+              </div>
+              <div className="p-7 space-y-6">
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2 flex items-center"><span className="mr-2">🏷️</span>Название <span className="text-rose-400 ml-1">*</span></label>
+                  <input type="text" value={equipmentForm.name} onChange={(e) => { setEquipmentForm({...equipmentForm, name: e.target.value}); if (equipmentFormErrors.name) setEquipmentFormErrors({...equipmentFormErrors, name: ''}); }} className={`w-full bg-gray-800/50 border ${equipmentFormErrors.name ? 'border-rose-500' : 'border-gray-700/50'} rounded-xl px-5 py-3.5 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-transparent text-lg`} placeholder="Станок ЧПУ-1" />
+                  {equipmentFormErrors.name && <p className="mt-2 text-sm text-rose-400 flex items-center"><span className="mr-1">⚠️</span>{equipmentFormErrors.name}</p>}
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2 flex items-center"><span className="mr-2">🏭</span>Место расположения <span className="text-rose-400 ml-1">*</span></label>
+                  <select value={equipmentForm.workplaceId} onChange={(e) => { setEquipmentForm({...equipmentForm, workplaceId: e.target.value}); if (equipmentFormErrors.workplaceId) setEquipmentFormErrors({...equipmentFormErrors, workplaceId: ''}); }} className={`w-full bg-gray-800/50 border ${equipmentFormErrors.workplaceId ? 'border-rose-500' : 'border-gray-700/50'} rounded-xl px-5 py-3.5 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-transparent text-lg appearance-none`}>
+                    <option value="">Выберите рабочее место</option>
+                    {workplaces.map(workplace => (<option key={workplace.id} value={workplace.id}>{workplace.name} ({workplace.factory})</option>))}
+                  </select>
+                  {equipmentFormErrors.workplaceId && <p className="mt-2 text-sm text-rose-400 flex items-center"><span className="mr-1">⚠️</span>{equipmentFormErrors.workplaceId}</p>}
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2 flex items-center"><span className="mr-2">🌍</span>Производитель <span className="text-rose-400 ml-1">*</span></label>
+                  <select value={equipmentForm.manufacturerId} onChange={(e) => { setEquipmentForm({...equipmentForm, manufacturerId: e.target.value}); if (equipmentFormErrors.manufacturerId) setEquipmentFormErrors({...equipmentFormErrors, manufacturerId: ''}); }} className={`w-full bg-gray-800/50 border ${equipmentFormErrors.manufacturerId ? 'border-rose-500' : 'border-gray-700/50'} rounded-xl px-5 py-3.5 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-transparent text-lg appearance-none`}>
+                    <option value="">Выберите производителя</option>
+                    {manufacturers.map(manufacturer => (<option key={manufacturer.id} value={manufacturer.id}>{manufacturer.name} ({manufacturer.country})</option>))}
+                  </select>
+                  {equipmentFormErrors.manufacturerId && <p className="mt-2 text-sm text-rose-400 flex items-center"><span className="mr-1">⚠️</span>{equipmentFormErrors.manufacturerId}</p>}
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2 flex items-center"><span className="mr-2">📦</span>Поставщик <span className="text-rose-400 ml-1">*</span></label>
+                  <select value={equipmentForm.supplierId} onChange={(e) => { setEquipmentForm({...equipmentForm, supplierId: e.target.value}); if (equipmentFormErrors.supplierId) setEquipmentFormErrors({...equipmentFormErrors, supplierId: ''}); }} className={`w-full bg-gray-800/50 border ${equipmentFormErrors.supplierId ? 'border-rose-500' : 'border-gray-700/50'} rounded-xl px-5 py-3.5 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-transparent text-lg appearance-none`}>
+                    <option value="">Выберите поставщика</option>
+                    {suppliers.map(supplier => (<option key={supplier.id} value={supplier.id}>{supplier.name}</option>))}
+                  </select>
+                  {equipmentFormErrors.supplierId && <p className="mt-2 text-sm text-rose-400 flex items-center"><span className="mr-1">⚠️</span>{equipmentFormErrors.supplierId}</p>}
+                </div>
+              </div>
+              <div className="p-7 border-t border-gray-800/50 flex justify-end space-x-4">
+                <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={() => { setIsAddEquipmentModalOpen(false); setEquipmentForm({ name: '', workplaceId: '', manufacturerId: '', supplierId: '' }); setEquipmentFormErrors({}); }} className="px-6 py-3.5 border border-gray-700/50 rounded-xl hover:bg-gray-800/80 transition-colors text-lg font-medium">Отмена</motion.button>
+                <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={handleAddEquipment} className="px-6 py-3.5 bg-gradient-to-r from-emerald-600 to-cyan-700 rounded-xl hover:opacity-90 transition-all text-lg font-bold shadow-lg">Добавить оборудование</motion.button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+
+        {isAddRequestModalOpen && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 backdrop-blur-sm" onClick={() => setIsAddRequestModalOpen(false)}>
+            <motion.div initial={{ scale: 0.9, opacity: 0, y: 20 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.9, opacity: 0, y: 20 }} className="bg-gradient-to-br from-gray-900 to-black border border-gray-800/50 rounded-2xl w-full max-w-2xl shadow-2xl max-h-[90vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
+              <div className="p-7 border-b border-gray-800/50 flex justify-between items-center">
+                <h2 className="text-2xl font-bold flex items-center bg-clip-text text-transparent bg-gradient-to-r from-amber-400 to-orange-500"><span className="mr-3 text-2xl">🔧</span>Новая заявка на обслуживание</h2>
+                <button onClick={() => setIsAddRequestModalOpen(false)} className="text-gray-400 hover:text-white transition-colors text-3xl">×</button>
+              </div>
+              <div className="p-7 space-y-6">
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2 flex items-center"><span className="mr-2">📝</span>Название заявки <span className="text-rose-400 ml-1">*</span></label>
+                  <input type="text" value={requestForm.title} onChange={(e) => { setRequestForm({...requestForm, title: e.target.value}); if (requestFormErrors.title) setRequestFormErrors({...requestFormErrors, title: ''}); }} className={`w-full bg-gray-800/50 border ${requestFormErrors.title ? 'border-rose-500' : 'border-gray-700/50'} rounded-xl px-5 py-3.5 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-transparent text-lg`} placeholder="Замена подшипника на станке ЧПУ-1" />
+                  {requestFormErrors.title && <p className="mt-2 text-sm text-rose-400 flex items-center"><span className="mr-1">⚠️</span>{requestFormErrors.title}</p>}
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-2 flex items-center"><span className="mr-2">🏭</span>Завод <span className="text-rose-400 ml-1">*</span></label>
+                    <select value={requestForm.factory} onChange={(e) => { setRequestForm({...requestForm, factory: e.target.value}); if (requestFormErrors.factory) setRequestFormErrors({...requestFormErrors, factory: ''}); }} className={`w-full bg-gray-800/50 border ${requestFormErrors.factory ? 'border-rose-500' : 'border-gray-700/50'} rounded-xl px-5 py-3.5 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-transparent text-lg appearance-none`}>
+                      <option value="ВЛГ">ВЛГ</option>
+                      <option value="ВТР">ВТР</option>
+                    </select>
+                    {requestFormErrors.factory && <p className="mt-2 text-sm text-rose-400 flex items-center"><span className="mr-1">⚠️</span>{requestFormErrors.factory}</p>}
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-2 flex items-center"><span className="mr-2">📊</span>Статус <span className="text-rose-400 ml-1">*</span></label>
+                    <select value={requestForm.status} onChange={(e) => { setRequestForm({...requestForm, status: e.target.value}); if (requestFormErrors.status) setRequestFormErrors({...requestFormErrors, status: ''}); }} className={`w-full bg-gray-800/50 border ${requestFormErrors.status ? 'border-rose-500' : 'border-gray-700/50'} rounded-xl px-5 py-3.5 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-transparent text-lg appearance-none`}>
+                      <option value="Новый">Новый</option>
+                      <option value="Открыто">Открыто</option>
+                      <option value="Ожидание">Ожидание</option>
+                    </select>
+                    {requestFormErrors.status && <p className="mt-2 text-sm text-rose-400 flex items-center"><span className="mr-1">⚠️</span>{requestFormErrors.status}</p>}
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2 flex items-center"><span className="mr-2">⚙️</span>Оборудование</label>
+                  <select value={requestForm.equipmentId} onChange={(e) => { setRequestForm({...requestForm, equipmentId: e.target.value, estimatedArea: ''}); if (requestFormErrors.equipment) setRequestFormErrors({...requestFormErrors, equipment: ''}); }} className={`w-full bg-gray-800/50 border ${requestFormErrors.equipment && !requestForm.estimatedArea ? 'border-rose-500' : 'border-gray-700/50'} rounded-xl px-5 py-3.5 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-transparent text-lg appearance-none`}>
+                    <option value="">Выберите оборудование</option>
+                    {equipment.map(item => (<option key={item.id} value={item.id}>{item.name} ({item.workplace})</option>))}
+                  </select>
+                  {requestFormErrors.equipment && !requestForm.estimatedArea && <p className="mt-2 text-sm text-rose-400 flex items-center"><span className="mr-1">⚠️</span>{requestFormErrors.equipment}</p>}
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2 flex items-center"><span className="mr-2">📍</span>Предполагаемый участок (если оборудование неизвестно)</label>
+                  <input type="text" value={requestForm.estimatedArea} onChange={(e) => { setRequestForm({...requestForm, estimatedArea: e.target.value, equipmentId: ''}); if (requestFormErrors.equipment) setRequestFormErrors({...requestFormErrors, equipment: ''}); }} className={`w-full bg-gray-800/50 border ${requestFormErrors.equipment && !requestForm.equipmentId ? 'border-rose-500' : 'border-gray-700/50'} rounded-xl px-5 py-3.5 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-transparent text-lg`} placeholder="Цех 1, участок механической обработки" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2 flex items-center"><span className="mr-2">📋</span>Описание проблемы</label>
+                  <textarea value={requestForm.description} onChange={(e) => setRequestForm({...requestForm, description: e.target.value})} className="w-full bg-gray-800/50 border border-gray-700/50 rounded-xl px-5 py-3.5 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-transparent text-lg min-h-[120px]" placeholder="Опишите проблему или необходимые работы..." />
+                </div>
+              </div>
+              <div className="p-7 border-t border-gray-800/50 flex justify-end space-x-4">
+                <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={() => { setIsAddRequestModalOpen(false); setRequestForm({ title: '', factory: 'ВЛГ', status: 'Новый', equipmentId: '', description: '', estimatedArea: '' }); setRequestFormErrors({}); }} className="px-6 py-3.5 border border-gray-700/50 rounded-xl hover:bg-gray-800/80 transition-colors text-lg font-medium">Отмена</motion.button>
+                <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={handleAddRequest} className="px-6 py-3.5 bg-gradient-to-r from-amber-600 to-orange-700 rounded-xl hover:opacity-90 transition-all text-lg font-bold shadow-lg">Создать заявку</motion.button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+
+        {isViewRequestModalOpen && selectedRequest && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 backdrop-blur-sm" onClick={() => setIsViewRequestModalOpen(false)}>
+            <motion.div initial={{ scale: 0.9, opacity: 0, y: 20 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.9, opacity: 0, y: 20 }} className="bg-gradient-to-br from-gray-900 to-black border border-gray-800/50 rounded-2xl w-full max-w-3xl shadow-2xl max-h-[90vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
+              <div className="p-7 border-b border-gray-800/50 flex justify-between items-center">
+                <h2 className="text-2xl font-bold flex items-center bg-clip-text text-transparent bg-gradient-to-r from-amber-400 to-orange-500"><span className="mr-3 text-2xl">🔧</span>{selectedRequest.title}</h2>
+                <button onClick={() => setIsViewRequestModalOpen(false)} className="text-gray-400 hover:text-white transition-colors text-3xl">×</button>
+              </div>
+              <div className="p-7 space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="bg-gray-800/30 rounded-2xl p-5 border border-gray-800/50">
+                    <p className="text-gray-400 text-sm mb-1 flex items-center"><span className="mr-2">🏭</span>Завод</p>
+                    <p className="text-xl font-semibold"><span className={`px-3 py-1 rounded-full text-sm ${selectedRequest.factory === 'ВЛГ' ? 'bg-blue-500/20 text-blue-300' : 'bg-purple-500/20 text-purple-300'}`}>{selectedRequest.factory}</span></p>
+                  </div>
+                  <div className="bg-gray-800/30 rounded-2xl p-5 border border-gray-800/50">
+                    <p className="text-gray-400 text-sm mb-1 flex items-center"><span className="mr-2">📊</span>Статус</p>
+                    <p className="text-xl font-semibold"><span className={`px-3 py-1 rounded-full text-sm ${selectedRequest.status === 'Новый' ? 'bg-amber-500/20 text-amber-300' : selectedRequest.status === 'Открыто' ? 'bg-emerald-500/20 text-emerald-300' : selectedRequest.status === 'Ожидание' ? 'bg-blue-500/20 text-blue-300' : 'bg-gray-500/20 text-gray-300'}`}>{selectedRequest.status}</span></p>
+                  </div>
+                  <div className="bg-gray-800/30 rounded-2xl p-5 border border-gray-800/50 md:col-span-2">
+                    <p className="text-gray-400 text-sm mb-1 flex items-center"><span className="mr-2">⚙️</span>Оборудование / Участок</p>
+                    <p className="text-xl font-semibold text-cyan-400">{selectedRequest.equipment}</p>
+                  </div>
+                  <div className="bg-gray-800/30 rounded-2xl p-5 border border-gray-800/50">
+                    <p className="text-gray-400 text-sm mb-1 flex items-center"><span className="mr-2">📅</span>Дата создания</p>
+                    <p className="text-xl font-semibold">{new Date(selectedRequest.createdAt).toLocaleDateString('ru-RU', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</p>
+                  </div>
+                  {selectedRequest.completedAt && (
+                    <div className="bg-gray-800/30 rounded-2xl p-5 border border-gray-800/50">
+                      <p className="text-gray-400 text-sm mb-1 flex items-center"><span className="mr-2">✅</span>Дата завершения</p>
+                      <p className="text-xl font-semibold text-emerald-400">{new Date(selectedRequest.completedAt).toLocaleDateString('ru-RU', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</p>
+                    </div>
+                  )}
+                </div>
+                <div className="bg-gray-800/30 rounded-2xl p-5 border border-gray-800/50">
+                  <p className="text-gray-400 text-sm mb-2 flex items-center"><span className="mr-2">📋</span>Описание проблемы</p>
+                  <p className="text-lg whitespace-pre-wrap">{selectedRequest.description || 'Описание отсутствует'}</p>
+                </div>
+                <div>
+                  <div className="flex justify-between items-center mb-4">
+                    <h3 className="text-xl font-bold flex items-center"><span className="mr-2">📦</span>Использованные ТМЦ</h3>
+                    {!['Выполнено', 'Ожидание'].includes(selectedRequest.status) && (
+                      <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={() => {}} className="px-4 py-2 bg-gradient-to-r from-emerald-600 to-cyan-700 rounded-lg font-medium text-sm">Добавить ТМЦ</motion.button>
+                    )}
+                  </div>
+                  {selectedRequest.tmcUsed.length > 0 ? (
+                    <div className="bg-gray-800/30 rounded-2xl p-5 border border-gray-800/50">
+                      <table className="w-full">
+                        <thead>
+                          <tr>
+                            <th className="text-left py-2 px-3 text-gray-300 text-sm">Код</th>
+                            <th className="text-left py-2 px-3 text-gray-300 text-sm">Название</th>
+                            <th className="text-left py-2 px-3 text-gray-300 text-sm">Количество</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {selectedRequest.tmcUsed.map((tmc, idx) => (
+                            <tr key={idx} className="border-t border-gray-800/50">
+                              <td className="py-2 px-3 font-mono text-cyan-400">{tmc.code}</td>
+                              <td className="py-2 px-3">{tmc.name}</td>
+                              <td className="py-2 px-3 font-semibold">{tmc.quantity} шт</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  ) : (
+                    <div className="bg-gray-800/30 rounded-2xl p-8 border border-gray-800/50 text-center"><p className="text-gray-400">ТМЦ еще не использованы</p></div>
+                  )}
+                </div>
+                {!['Выполнено'].includes(selectedRequest.status) && (
+                  <div className="flex justify-end space-x-4 pt-4 border-t border-gray-800/50">
+                    {selectedRequest.status === 'Новый' && (
+                      <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={() => handleUpdateRequestStatus('Открыто')} className="px-6 py-3 bg-gradient-to-r from-emerald-600 to-cyan-700 rounded-xl font-bold text-lg shadow-lg">Открыть заявку</motion.button>
+                    )}
+                    {selectedRequest.status === 'Открыто' && (
+                      <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={() => handleUpdateRequestStatus('Ожидание')} className="px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-700 rounded-xl font-bold text-lg shadow-lg">Перевести в ожидание</motion.button>
+                    )}
+                    {['Открыто', 'Ожидание'].includes(selectedRequest.status) && (
+                      <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={() => handleUpdateRequestStatus('Выполнено')} className="px-6 py-3 bg-gradient-to-r from-amber-600 to-orange-700 rounded-xl font-bold text-lg shadow-lg">Завершить заявку</motion.button>
+                    )}
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
