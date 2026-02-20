@@ -1,11 +1,11 @@
+```
+# Dependencies
+node_modules/
+
 # Build artifacts
 dist/
 build/
-*.js.map
 *.css.map
-
-# Dependencies
-node_modules/
 
 # Environment
 .env
@@ -19,43 +19,61 @@ node_modules/
 # Logs
 *.log
 
-# Python
+# Temp files
+*.tmp
+*.swp
+
+# Python cache
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
 
-# Temporary files
-*.tmp
-*.swp
-*~
+# OS generated files
 .DS_Store
 Thumbs.db
 
-# Coverage
+# Coverage reports
 coverage/
 htmlcov/
 .coverage
 
-# Testing
-.pytest_cache/
+# Compiled files
+*.o
+*.obj
+*.exe
+*.dll
+*.so
+*.a
+*.out
+
+# Gradle
+.gradle/
+build/
+
+# MyPy cache
 .mypy_cache/
 
-# Distribution
-*.egg-info/
-pip-log.txt
-pip-delete-this-directory.txt
+# Pytest cache
+.pytest_cache/
 
-# OS generated files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-*:*
-
-# Local configuration
-!.gitignore
-!vite.config.js
+# Zip archives
+*.zip
+*.gz
+*.tar
+*.tgz
+*.bz2
+*.xz
+*.7z
+*.rar
+*.zst
+*.lz4
+*.lzh
+*.cab
+*.arj
+*.rpm
+*.deb
+*.Z
+*.lz
+*.lzo
+```
