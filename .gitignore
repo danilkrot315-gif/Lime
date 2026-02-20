@@ -17,7 +17,7 @@ build/
 .vscode/
 .idea/
 
-# Logs
+# Logs and temp files
 *.log
 
 # OS generated files
