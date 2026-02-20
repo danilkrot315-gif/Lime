@@ -6,7 +6,7 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        main: './volgograd-online/src/main.jsx'
+       main: './volgograd-online/src/main.jsx'
       }
     }
   },
